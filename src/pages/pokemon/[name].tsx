@@ -1,19 +1,16 @@
 import { useQuery } from '@apollo/client';
-import { GetStaticProps } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import CatchPokemonModal from '../../components/Pokemon/CatchPokemonModal';
-// import { Link, useHistory, useParams } from 'react-router-dom';
-import { PokemonContext } from '../../context/PokemonContext';
-import { GET_POKEMONS, GET_SPESIFIC_POKEMON } from '../../graphql/get-pokemon';
+import { GET_SPESIFIC_POKEMON } from '../../graphql/get-pokemon';
 
 const PokemonDetail = () => {
 	const router = useRouter();
 	const { name: pokemonName } = router.query;
 	const [showCatchDialog, setShowCatchDialog] = useState(false);
 	const [catchFailed, setCatchFailed] = useState(false);
-	const { data: { pokemon = {} } = {}, loading, refetch } = useQuery(
+	const { data: { pokemon = {} } = {}, loading } = useQuery(
 		GET_SPESIFIC_POKEMON,
 		{
 			variables: { name: pokemonName },
@@ -29,7 +26,6 @@ const PokemonDetail = () => {
 
 	const catchPokemon = (): void => {
 		const prob50 = Math.random() >= 0.5;
-		console.log(prob50);
 		if (prob50) {
 			setCatchFailed(false);
 			setShowCatchDialog(true);

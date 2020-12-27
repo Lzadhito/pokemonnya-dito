@@ -1,11 +1,8 @@
-import { ApolloClient, InMemoryCache, useQuery } from '@apollo/client';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import React, { useContext, useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
-import { GET_POKEMONS, GET_SPESIFIC_POKEMON } from '../../graphql/get-pokemon';
+import { GET_POKEMONS } from '../../graphql/get-pokemon';
 import { PokemonContext } from '../../context/PokemonContext';
-import MyPokemons from '../mypokemons';
 import PokemonCard from '../../components/PokemonCard';
 
 const PokemonsList = () => {

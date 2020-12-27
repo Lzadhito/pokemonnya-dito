@@ -5,14 +5,17 @@ import {
 	DialogContent,
 	DialogContentText,
 	DialogTitle,
-	Input,
 	Slide,
 	TextField,
 } from '@material-ui/core';
+import { TransitionProps } from '@material-ui/core/transitions';
 import React, { useContext, useState } from 'react';
 import { PokemonContext, MyPokemon } from '../../context/PokemonContext';
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = React.forwardRef(function Transition(
+	props: TransitionProps & { children?: React.ReactElement<any, any> },
+	ref: React.Ref<unknown>
+) {
 	return <Slide direction='up' ref={ref} {...props} />;
 });
 

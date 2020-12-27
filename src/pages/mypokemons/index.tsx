@@ -1,14 +1,10 @@
 import Link from 'next/link';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PokemonCard from '../../components/PokemonCard';
 import { PokemonContext } from '../../context/PokemonContext';
 
 const MyPokemons = () => {
 	const { myPokemons, removePokemon } = useContext(PokemonContext);
-
-	useEffect(() => {
-		console.log(myPokemons);
-	}, [myPokemons]);
 
 	const generateListPokemons = (myPokemons: Object): any[] => {
 		let pokemonsList = [];

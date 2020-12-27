@@ -50,13 +50,11 @@ export const PokemonProvider = (props) => {
 	};
 
 	const removePokemon = (nickname: string): boolean => {
-		console.log('removing...');
 		try {
 			if (myPokemons[nickname]) {
 				let newMyPokemons = { ...myPokemons };
 				delete newMyPokemons[nickname];
 				setPokemonsOnStorage(newMyPokemons);
-				console.log('berhasil!');
 				return true;
 			}
 			return false;
@@ -67,7 +65,7 @@ export const PokemonProvider = (props) => {
 
 	const countPokemons = (): number => {
 		let result = 0;
-		for (let nickname in myPokemons) {
+		for (let _ in myPokemons) {
 			result++;
 		}
 		return result;

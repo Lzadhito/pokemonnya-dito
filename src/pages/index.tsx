@@ -11,7 +11,7 @@ export default function Home() {
 
 			<main className={styles.main}>
 				<h1 className={styles.title}>
-					Welcome <a href='https://nextjs.org'>Dito!</a>
+					Pokemonnya <a href='https://nextjs.org'>Dito!</a>
 				</h1>
 
 				{/* <p className={styles.description}>
@@ -57,7 +57,11 @@ export default function Home() {
 					rel='noopener noreferrer'
 				>
 					Powered by{' '}
-					<img src='/vercel.svg' alt='Vercel Logo' className={styles.logo} />
+					<img
+						src='../../vercel.svg'
+						alt='Vercel Logo'
+						className={styles.logo}
+					/>
 				</a>
 			</footer>
 		</div>
