@@ -5,11 +5,13 @@ import React, { useContext, useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
 import { GET_POKEMONS, GET_SPESIFIC_POKEMON } from '../../graphql/get-pokemon';
 import { PokemonContext } from '../../context/PokemonContext';
+import MyPokemons from '../mypokemons';
+import PokemonCard from '../../components/PokemonCard';
 
 const PokemonsList = () => {
 	const limit = 3;
 	const [pokemonOffset, setPokemonOffset] = useState(1);
-	const [pokemons, setPokemons] = useContext(PokemonContext);
+	const { countPokemons } = useContext(PokemonContext);
 
 	const {
 		data: { pokemons: { results = [], next = '', previous = '' } = {} } = {},
@@ -23,20 +25,14 @@ const PokemonsList = () => {
 		refetch();
 	}, [pokemonOffset, refetch]);
 
+	const totalPokemons = countPokemons();
+
 	if (loading) return <div>loading...</div>;
 	return (
 		<div>
+			<div>total mypokemons: {totalPokemons}</div>
 			{results.map((poke) => (
-				<div
-					style={{ display: 'flex', direction: 'row', marginBottom: '1rem' }}
-				>
-					<p>{JSON.stringify(poke.name)}</p>
-					<Link href={`/pokemon/${poke.name}`}>
-						<button style={{ marginLeft: '1rem' }}>
-							<a>go to {poke.name}</a>
-						</button>
-					</Link>
-				</div>
+				<PokemonCard poke={poke} />
 			))}
 			{previous && (
 				<button
@@ -50,13 +46,11 @@ const PokemonsList = () => {
 					next
 				</button>
 			)}
-			<button
-				onClick={() => {
-					setPokemons((old) => [...old, old.length + 1]);
-				}}
-			>
-				{JSON.stringify(pokemons)}
-			</button>
+			<Link href={`/mypokemons`}>
+				<button>
+					<a>My Pokemons</a>
+				</button>
+			</Link>
 		</div>
 	);
 };

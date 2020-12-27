@@ -38,8 +38,9 @@ export const PokemonProvider = (props) => {
 		const { nickname, pokemon } = newPokemon;
 		try {
 			if (!myPokemons[nickname]) {
-				myPokemons[nickname] = pokemon;
-				setPokemonsOnStorage(myPokemons);
+				let newMyPokemons = { ...myPokemons };
+				newMyPokemons[nickname] = pokemon;
+				setPokemonsOnStorage(newMyPokemons);
 				return true;
 			}
 			return false;
@@ -48,22 +49,34 @@ export const PokemonProvider = (props) => {
 		}
 	};
 
-	const removePokemon = (removePokemon: MyPokemon): boolean => {
-		const { nickname } = removePokemon;
+	const removePokemon = (nickname: string): boolean => {
+		console.log('removing...');
 		try {
 			if (myPokemons[nickname]) {
-				delete myPokemons[nickname];
-				setPokemonsOnStorage(myPokemons);
+				let newMyPokemons = { ...myPokemons };
+				delete newMyPokemons[nickname];
+				setPokemonsOnStorage(newMyPokemons);
+				console.log('berhasil!');
 				return true;
 			}
 			return false;
 		} catch (error) {
 			return false;
 		}
+	};
+
+	const countPokemons = (): number => {
+		let result = 0;
+		for (let nickname in myPokemons) {
+			result++;
+		}
+		return result;
 	};
 
 	return (
-		<PokemonContext.Provider value={[myPokemons, addPokemon, removePokemon]}>
+		<PokemonContext.Provider
+			value={{ myPokemons, addPokemon, removePokemon, countPokemons }}
+		>
 			{props.children}
 		</PokemonContext.Provider>
 	);

@@ -18,8 +18,16 @@ export const GET_POKEMONS = gql`
 export const GET_SPESIFIC_POKEMON = gql`
 	query pokemon($name: String!) {
 		pokemon(name: $name) {
-			id
 			name
+			sprites {
+				front_default
+			}
+			moves {
+				move {
+					url
+					name
+				}
+			}
 			types {
 				type {
 					name
