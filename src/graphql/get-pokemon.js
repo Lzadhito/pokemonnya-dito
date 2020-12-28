@@ -22,17 +22,17 @@ export const GET_SPESIFIC_POKEMON = gql`
 			sprites {
 				front_default
 			}
-			moves {
-				move {
-					url
-					name
-				}
-			}
-			types {
-				type {
-					name
-				}
-			}
+			# moves {
+			# 	move {
+			# 		url
+			# 		name
+			# 	}
+			# }
+			# types {
+			# 	type {
+			# 		name
+			# 	}
+			# }
 		}
 	}
 `;

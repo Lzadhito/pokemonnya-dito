@@ -1,12 +1,16 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx, css } from '@emotion/react';
+
 import { useQuery } from '@apollo/client';
-import Link from 'next/link';
 import React, { useContext, useEffect, useState } from 'react';
 import { GET_POKEMONS } from '../../graphql/get-pokemon';
 import { PokemonContext } from '../../context/PokemonContext';
 import PokemonCard from '../../components/PokemonCard';
+import { Button, Container, Grid, Typography } from '@material-ui/core';
 
 const PokemonsList = () => {
-	const limit = 3;
+	const limit = 7;
 	const [pokemonOffset, setPokemonOffset] = useState(1);
 	const { countPokemons } = useContext(PokemonContext);
 
@@ -26,29 +30,64 @@ const PokemonsList = () => {
 
 	if (loading) return <div>loading...</div>;
 	return (
-		<div>
-			<div>total mypokemons: {totalPokemons}</div>
-			{results.map((poke) => (
-				<PokemonCard poke={poke} />
-			))}
-			{previous && (
-				<button
-					onClick={() => previous && setPokemonOffset(pokemonOffset - limit)}
+		<Container>
+			<div
+				css={css`
+					margin: 0 0 3vh 0;
+				`}
+			>
+				<Typography variant='h5'>Catch the Pokemons!</Typography>
+				<Typography variant='subtitle2'>
+					you have {totalPokemons} pokemons
+				</Typography>
+			</div>
+			<Grid container justify='space-between' spacing={2}>
+				{results.map((poke) => (
+					<Grid item>
+						<PokemonCard poke={poke} />
+					</Grid>
+				))}
+			</Grid>
+			<div
+				css={css`
+					display: flex;
+					margin-top: 3vh;
+				`}
+			>
+				<div
+					css={css`
+						flex: 1;
+					`}
 				>
-					previous
-				</button>
-			)}
-			{next && (
-				<button onClick={() => next && setPokemonOffset(pokemonOffset + limit)}>
-					next
-				</button>
-			)}
-			<Link href={`/mypokemons`}>
-				<button>
-					<a>My Pokemons</a>
-				</button>
-			</Link>
-		</div>
+					{previous && (
+						<Button
+							variant='outlined'
+							onClick={() =>
+								previous && setPokemonOffset(pokemonOffset - limit)
+							}
+						>
+							previous
+						</Button>
+					)}
+				</div>
+				<div
+					css={css`
+						flex: 1;
+						display: flex;
+						justify-content: flex-end;
+					`}
+				>
+					{next && (
+						<Button
+							variant='outlined'
+							onClick={() => next && setPokemonOffset(pokemonOffset + limit)}
+						>
+							next
+						</Button>
+					)}
+				</div>
+			</div>
+		</Container>
 	);
 };
 

@@ -1,6 +1,10 @@
-import Link from 'next/link';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx, css } from '@emotion/react';
+
+import { Container, Grid, Typography } from '@material-ui/core';
 import React, { useContext } from 'react';
-import PokemonCard from '../../components/PokemonCard';
+import MyPokemonCard from '../../components/MyPokemonCard';
 import { PokemonContext } from '../../context/PokemonContext';
 
 const MyPokemons = () => {
@@ -14,12 +18,13 @@ const MyPokemons = () => {
 				removePokemon(nickname);
 			};
 			const row = (
-				<div>
-					<PokemonCard poke={pokemon} nickname={nickname} />
-					<button style={{ marginLeft: '1rem' }} onClick={removePoke}>
-						remove
-					</button>
-				</div>
+				<Grid item>
+					<MyPokemonCard
+						poke={pokemon}
+						nickname={nickname}
+						onClickRemove={removePoke}
+					/>
+				</Grid>
 			);
 			pokemonsList.push(row);
 		}
@@ -28,14 +33,19 @@ const MyPokemons = () => {
 	};
 
 	return (
-		<div>
-			<Link href='/pokemon'>
-				<button style={{ marginLeft: '1rem' }}>
-					<a>go to Pokemon List</a>
-				</button>
-			</Link>
-			{generateListPokemons(myPokemons)}
-		</div>
+		<Container>
+			<Typography variant='h6'>My Pokemons</Typography>
+			<Grid
+				css={css`
+					margin-top: 1vh;
+				`}
+				container
+				direction='column'
+				spacing={2}
+			>
+				{generateListPokemons(myPokemons)}
+			</Grid>
+		</Container>
 	);
 };
 

@@ -1,9 +1,13 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx, css } from '@emotion/react';
+
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/dist/client/router';
-import Link from 'next/link';
 import React, { useState } from 'react';
 import CatchPokemonModal from '../../components/Pokemon/CatchPokemonModal';
 import { GET_SPESIFIC_POKEMON } from '../../graphql/get-pokemon';
+import { Button, Container } from '@material-ui/core';
 
 const PokemonDetail = () => {
 	const router = useRouter();
@@ -34,17 +38,28 @@ const PokemonDetail = () => {
 
 	if (loading) return <div>loading...</div>;
 	return (
-		<div>
-			<div>
-				<Link href='/pokemon'>
-					<button>
-						<a>go to Pokemon List</a>
-					</button>
-				</Link>
-			</div>
-			<img src={front_default} />
-			<p>Pokemon Detail {name}</p>
-			<div>
+		<Container
+			css={css`
+				display: flex;
+				flex-direction: column;
+				align-content: center;
+			`}
+		>
+			<img
+				css={css`
+					flex: 0;
+					object-fit: contain;
+				`}
+				src={front_default}
+			/>
+			<p
+				css={css`
+					text-align: center;
+				`}
+			>
+				{name}
+			</p>
+			{/* <div>
 				<p>
 					Moves:
 					{moves.map((move) => (
@@ -59,8 +74,16 @@ const PokemonDetail = () => {
 						<div>{type.type.name}</div>
 					))}
 				</p>
-			</div>
-			<button onClick={catchPokemon}>catch!</button>
+			</div> */}
+			<Button
+				css={css`
+					background: #f44336;
+					color: white;
+				`}
+				onClick={catchPokemon}
+			>
+				Catch !
+			</Button>
 			{catchFailed ? (
 				<div>you failed to catch the pokemon :(</div>
 			) : (
@@ -71,7 +94,7 @@ const PokemonDetail = () => {
 				/>
 			)}
 			{/* <p>{JSON.stringify(pokemons)}</p> */}
-		</div>
+		</Container>
 	);
 };
 
