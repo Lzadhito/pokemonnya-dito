@@ -3,11 +3,17 @@
 import { jsx, css } from '@emotion/react';
 
 import { useQuery } from '@apollo/client';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { GET_POKEMONS } from '../../graphql/get-pokemon';
 import { PokemonContext } from '../../context/PokemonContext';
 import PokemonCard from '../../components/PokemonCard';
-import { Button, Container, Grid, Typography } from '@material-ui/core';
+import {
+	Button,
+	CircularProgress,
+	Container,
+	Grid,
+	Typography,
+} from '@material-ui/core';
 
 const PokemonsList = () => {
 	const limit = 7;
@@ -28,7 +34,19 @@ const PokemonsList = () => {
 
 	const totalPokemons = countPokemons();
 
-	if (loading) return <div>loading...</div>;
+	if (loading)
+		return (
+			<div
+				css={css`
+					display: flex;
+					height: 80vh;
+					justify-content: center;
+					align-items: center;
+				`}
+			>
+				<CircularProgress />
+			</div>
+		);
 	return (
 		<Container>
 			<div
@@ -41,9 +59,9 @@ const PokemonsList = () => {
 					you have {totalPokemons} pokemons
 				</Typography>
 			</div>
-			<Grid container justify='space-between' spacing={2}>
-				{results.map((poke) => (
-					<Grid item>
+			<Grid container justify='space-around' spacing={2}>
+				{results.map((poke: any) => (
+					<Grid key={poke.name} item>
 						<PokemonCard poke={poke} />
 					</Grid>
 				))}

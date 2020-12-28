@@ -4,7 +4,7 @@ import { jsx, css } from '@emotion/react';
 import { Card, Typography } from '@material-ui/core';
 import { Link } from '@material-ui/core';
 
-const PokemonCard = (props) => {
+const PokemonCard = (props: any) => {
 	return (
 		<Link href={`/pokemon/${props.poke.name}`}>
 			<Card

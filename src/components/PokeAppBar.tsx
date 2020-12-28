@@ -11,6 +11,8 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ChevronLeft } from '@material-ui/icons';
+import { Typography } from '@material-ui/core';
+import { useMediaQuery } from 'react-responsive';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -29,13 +31,10 @@ const useStyles = makeStyles((theme: Theme) =>
 const PokeAppBar = () => {
 	const classes = useStyles();
 	const router = useRouter();
+	const isMobile = useMediaQuery({ maxWidth: 600 });
 
 	const pathname = router.pathname;
 	const isMainPage = pathname === '/pokemon';
-
-	const back = () => {
-		router.back();
-	};
 
 	return (
 		<div className={classes.root}>
@@ -47,15 +46,17 @@ const PokeAppBar = () => {
 							align-items: center;
 						`}
 					>
-						{/* {!isMainPage && (
-							<IconButton onClick={back}>
-								<ChevronLeft
-									css={css`
-										color: white;
-									`}
-								/>
-							</IconButton>
-						)} */}
+						{!isMainPage && (
+							<Link href='/pokemon'>
+								<IconButton>
+									<ChevronLeft
+										css={css`
+											color: white;
+										`}
+									/>
+								</IconButton>
+							</Link>
+						)}
 						<Link href='/pokemon'>
 							<button
 								css={css`
@@ -79,11 +80,22 @@ const PokeAppBar = () => {
 					</div>
 
 					<Link href={`/mypokemons`}>
-						<IconButton color='inherit'>
-							<SvgIcon>
-								<PokeBallIcon />
-							</SvgIcon>
-						</IconButton>
+						<div>
+							{!isMobile && (
+								<h5
+									css={css`
+										display: inline;
+									`}
+								>
+									My Pokemons
+								</h5>
+							)}
+							<IconButton color='inherit'>
+								<SvgIcon>
+									<PokeBallIcon />
+								</SvgIcon>
+							</IconButton>
+						</div>
 					</Link>
 				</Toolbar>
 			</AppBar>

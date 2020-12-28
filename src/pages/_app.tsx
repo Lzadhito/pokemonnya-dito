@@ -1,5 +1,5 @@
-// import App from "next/app";
-import type { AppProps /*, AppContext */ } from 'next/app';
+import App from 'next/app';
+import type { AppProps, AppContext } from 'next/app';
 import {
 	ApolloClient,
 	ApolloProvider,
@@ -14,7 +14,7 @@ import {
 	MuiThemeProvider,
 	StylesProvider,
 } from '@material-ui/core/styles';
-import { green, red } from '@material-ui/core/colors';
+import { red } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
 	palette: {
@@ -64,11 +64,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 // perform automatic static optimization, causing every page in your app to
 // be server-side rendered.
 //
-// MyApp.getInitialProps = async (appContext: AppContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
+MyApp.getInitialProps = async (appContext: AppContext) => {
+	// calls page's `getInitialProps` and fills `appProps.pageProps`
+	const appProps = await App.getInitialProps(appContext);
 
-//   return { ...appProps }
-// }
+	return { ...appProps };
+};
 
 export default MyApp;

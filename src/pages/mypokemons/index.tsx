@@ -3,7 +3,7 @@
 import { jsx, css } from '@emotion/react';
 
 import { Container, Grid, Typography } from '@material-ui/core';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import MyPokemonCard from '../../components/MyPokemonCard';
 import { PokemonContext } from '../../context/PokemonContext';
 
@@ -18,7 +18,7 @@ const MyPokemons = () => {
 				removePokemon(nickname);
 			};
 			const row = (
-				<Grid item>
+				<Grid key={nickname} item>
 					<MyPokemonCard
 						poke={pokemon}
 						nickname={nickname}

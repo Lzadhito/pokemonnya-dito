@@ -4,10 +4,23 @@ import { jsx, css } from '@emotion/react';
 
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/dist/client/router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import CatchPokemonModal from '../../components/Pokemon/CatchPokemonModal';
 import { GET_SPESIFIC_POKEMON } from '../../graphql/get-pokemon';
-import { Button, Container } from '@material-ui/core';
+import {
+	Button,
+	CircularProgress,
+	Container,
+	Divider,
+	Grid,
+	List,
+	ListItem,
+	ListItemText,
+	Paper,
+	Snackbar,
+	Typography,
+} from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 
 const PokemonDetail = () => {
 	const router = useRouter();
@@ -36,7 +49,19 @@ const PokemonDetail = () => {
 		} else setCatchFailed(true);
 	};
 
-	if (loading) return <div>loading...</div>;
+	if (loading)
+		return (
+			<div
+				css={css`
+					display: flex;
+					height: 80vh;
+					justify-content: center;
+					align-items: center;
+				`}
+			>
+				<CircularProgress />
+			</div>
+		);
 	return (
 		<Container
 			css={css`
@@ -45,36 +70,61 @@ const PokemonDetail = () => {
 				align-content: center;
 			`}
 		>
-			<img
+			<div
 				css={css`
-					flex: 0;
-					object-fit: contain;
-				`}
-				src={front_default}
-			/>
-			<p
-				css={css`
-					text-align: center;
+					display: flex;
+					flex-direction: column;
+					align-content: center;
+					margin: 0 0 3vh 0;
 				`}
 			>
-				{name}
-			</p>
-			{/* <div>
-				<p>
-					Moves:
-					{moves.map((move) => (
-						<div>{move.move.name}</div>
-					))}
-				</p>
-			</div>
-			<div>
-				<p>
-					Types:
+				<img
+					css={css`
+						flex: 0;
+						object-fit: contain;
+					`}
+					src={front_default}
+				/>
+				<h2
+					css={css`
+						text-align: center;
+					`}
+				>
+					{name.charAt(0).toUpperCase() + name.slice(1)}
+				</h2>
+				<Grid container spacing={5} justify='center'>
 					{types.map((type) => (
-						<div>{type.type.name}</div>
+						<Grid key={type.type.name} item>
+							<li>{type.type.name}</li>
+						</Grid>
 					))}
-				</p>
-			</div> */}
+				</Grid>
+			</div>
+			<div
+				css={css`
+					margin: 0 0 3vh 0;
+				`}
+			>
+				<Typography variant='h6'>Moves:</Typography>
+				<Paper
+					css={css`
+						max-height: 40vh;
+						overflow: auto;
+						margin: 1vh 0;
+					`}
+				>
+					<List>
+						{moves.map((move) => (
+							<div key={move.move.name}>
+								<ListItem>
+									<ListItemText>{move.move.name}</ListItemText>
+								</ListItem>
+								<Divider />
+							</div>
+						))}
+					</List>
+				</Paper>
+			</div>
 			<Button
 				css={css`
 					background: #f44336;
@@ -85,7 +135,16 @@ const PokemonDetail = () => {
 				Catch !
 			</Button>
 			{catchFailed ? (
-				<div>you failed to catch the pokemon :(</div>
+				<Snackbar
+					open={catchFailed}
+					autoHideDuration={3000}
+					onClose={() => setCatchFailed(false)}
+				>
+					<Alert onClose={() => setCatchFailed(false)} severity='error'>
+						You failed to catch the pokemon :( <br />
+						Please try again
+					</Alert>
+				</Snackbar>
 			) : (
 				<CatchPokemonModal
 					pokemon={pokemon}
@@ -93,7 +152,6 @@ const PokemonDetail = () => {
 					onClose={setShowCatchDialog}
 				/>
 			)}
-			{/* <p>{JSON.stringify(pokemons)}</p> */}
 		</Container>
 	);
 };

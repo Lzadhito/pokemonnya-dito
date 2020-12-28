@@ -6,9 +6,11 @@ import {
 	DialogContentText,
 	DialogTitle,
 	Slide,
+	Snackbar,
 	TextField,
 } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
+import Alert from '@material-ui/lab/Alert';
 import React, { useContext, useState } from 'react';
 import { PokemonContext, MyPokemon } from '../../context/PokemonContext';
 
@@ -21,6 +23,8 @@ const Transition = React.forwardRef(function Transition(
 
 const CatchPokemonModal = (props) => {
 	const [nickname, setNickname] = useState('');
+	const [snackbar, setSnackbar] = useState(false);
+	const [snackbarText, setSnackbarText] = useState('Something wrong happened');
 	const { addPokemon } = useContext(PokemonContext);
 
 	const catchPokemon = (event) => {
@@ -30,9 +34,13 @@ const CatchPokemonModal = (props) => {
 			pokemon: props.pokemon,
 		};
 		if (addPokemon(newMyPokemon)) {
-			alert(`${nickname} has been catch!`);
+			setSnackbar(true);
+			setSnackbarText('Successfully catch pokemon');
 			handleClose();
-		} else alert('failed to catch pokemon: nickname already exists');
+		} else {
+			setSnackbar(true);
+			setSnackbarText('Nickname already exists');
+		}
 	};
 
 	const handleClose = () => {
@@ -45,41 +53,55 @@ const CatchPokemonModal = (props) => {
 		setNickname(event.target.value);
 	};
 	return (
-		<Dialog
-			TransitionComponent={Transition}
-			onBackdropClick={handleClose}
-			onClose={handleClose}
-			open={props.open}
-		>
-			<DialogTitle id='alert-dialog-slide-title'>
-				{'You successfuly catch the pokemon!'}
-			</DialogTitle>
-			<form onSubmit={catchPokemon}>
-				<DialogContent>
-					<DialogContentText id='alert-dialog-slide-description'>
-						Give nickname to your new pokemon.
-					</DialogContentText>
-					<TextField
-						autoFocus
-						margin='dense'
-						id='nickname'
-						label='Nickname'
-						type='text'
-						onChange={changeNickname}
-						required
-						fullWidth
-					/>
-				</DialogContent>
-				<DialogActions>
-					<Button variant='contained' onClick={handleClose} color='secondary'>
-						Cancel
-					</Button>
-					<Button variant='contained' type='submit' color='primary'>
-						Catch!
-					</Button>
-				</DialogActions>
-			</form>
-		</Dialog>
+		<div>
+			<Dialog
+				TransitionComponent={Transition}
+				onBackdropClick={handleClose}
+				onClose={handleClose}
+				open={props.open}
+			>
+				<DialogTitle id='alert-dialog-slide-title'>
+					{'You successfuly catch the pokemon!'}
+				</DialogTitle>
+				<form onSubmit={catchPokemon}>
+					<DialogContent>
+						<DialogContentText id='alert-dialog-slide-description'>
+							Give nickname to your new pokemon.
+						</DialogContentText>
+						<TextField
+							autoFocus
+							margin='dense'
+							id='nickname'
+							label='Nickname'
+							type='text'
+							onChange={changeNickname}
+							required
+							fullWidth
+						/>
+					</DialogContent>
+					<DialogActions>
+						<Button variant='contained' onClick={handleClose} color='secondary'>
+							Cancel
+						</Button>
+						<Button variant='contained' type='submit' color='primary'>
+							Submit
+						</Button>
+					</DialogActions>
+				</form>
+			</Dialog>
+			<Snackbar
+				open={snackbar}
+				autoHideDuration={3000}
+				onClose={() => setSnackbar(false)}
+			>
+				<Alert
+					onClose={() => setSnackbar(false)}
+					severity={snackbarText.includes('Successfully') ? 'success' : 'error'}
+				>
+					{snackbarText}
+				</Alert>
+			</Snackbar>
+		</div>
 	);
 };
 
