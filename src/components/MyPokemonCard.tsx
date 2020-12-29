@@ -50,6 +50,8 @@ const MyPokemonCard = (props) => {
 						<img
 							css={css`
 								flex: 0;
+								width: 100px;
+								height: 100px;
 								object-fit: contain;
 							`}
 							src={props.poke.image || props.poke.sprites.front_default}

@@ -22,6 +22,8 @@ import {
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
+export const config = { amp: true };
+
 const PokemonDetail = () => {
 	const router = useRouter();
 	const { name: pokemonName } = router.query;
@@ -80,6 +82,9 @@ const PokemonDetail = () => {
 			>
 				<img
 					css={css`
+						width: 100px;
+						height: 100px;
+						align-self: center;
 						flex: 0;
 						object-fit: contain;
 					`}

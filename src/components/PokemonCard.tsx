@@ -23,6 +23,8 @@ const PokemonCard = (props: any) => {
 				>
 					<img
 						css={css`
+							width: 100px;
+							height: 100px;
 							flex: 0;
 							object-fit: contain;
 						`}

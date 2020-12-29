@@ -73,3 +73,5 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
 };
 
 export default MyApp;
+
+export const config = { amp: true };
