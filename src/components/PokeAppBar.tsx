@@ -85,6 +85,7 @@ const PokeAppBar = () => {
 								<h5
 									css={css`
 										display: inline;
+										cursor: pointer;
 									`}
 								>
 									My Pokemons

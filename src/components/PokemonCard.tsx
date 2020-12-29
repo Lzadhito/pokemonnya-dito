@@ -1,34 +1,43 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react';
-import { Card, Typography } from '@material-ui/core';
-import { Link } from '@material-ui/core';
+import { ButtonBase, Card } from '@material-ui/core';
+import Link from 'next/link';
 
 const PokemonCard = (props: any) => {
 	return (
 		<Link href={`/pokemon/${props.poke.name}`}>
-			<Card
-				css={css`
-					// margin: 1vh 0;
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					align-items: center;
-					width: 130px;
-					height: 130px;
-				`}
-				key={props.poke.id}
-			>
-				{/* <CardMedia image={props.poke.image || props.poke.sprites.front_default} /> */}
-				<img
+			<ButtonBase>
+				<Card
 					css={css`
-						flex: 0;
-						object-fit: contain;
+						// margin: 1vh 0;
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+						width: 130px;
+						height: 130px;
+						cursor: pointer;
 					`}
-					src={props.poke.image || props.poke.sprites.front_default}
-				/>
-				<Typography>{props.poke.name}</Typography>
-			</Card>
+					key={props.poke.id}
+				>
+					{/* <CardMedia image={props.poke.image || props.poke.sprites.front_default} /> */}
+					<img
+						css={css`
+							flex: 0;
+							object-fit: contain;
+						`}
+						src={props.poke.image || props.poke.sprites.front_default}
+					/>
+					<h4
+						css={css`
+							margin: 0;
+						`}
+					>
+						{props.poke.name}
+					</h4>
+				</Card>
+			</ButtonBase>
 		</Link>
 	);
 };
