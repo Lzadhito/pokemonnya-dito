@@ -11,7 +11,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ChevronLeft } from '@material-ui/icons';
-import { Typography } from '@material-ui/core';
+import { ButtonBase, Typography } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -82,14 +82,21 @@ const PokeAppBar = () => {
 					<Link href={`/mypokemons`}>
 						<div>
 							{!isMobile && (
-								<h5
+								<ButtonBase
 									css={css`
-										display: inline;
-										cursor: pointer;
+										padding: 0 1vw;
+										border-radius: 5%;
 									`}
 								>
-									My Pokemons
-								</h5>
+									<h5
+										css={css`
+											display: inline;
+											cursor: pointer;
+										`}
+									>
+										My Pokemons
+									</h5>
+								</ButtonBase>
 							)}
 							<IconButton color='inherit'>
 								<SvgIcon>
