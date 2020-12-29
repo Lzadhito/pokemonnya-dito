@@ -15,15 +15,16 @@ const PokemonCard = (props: any) => {
 						flex-direction: column;
 						justify-content: center;
 						align-items: center;
-						width: 130px;
-						height: 130px;
+						width: 140px;
+						height: 140px;
 						cursor: pointer;
 					`}
 					key={props.poke.id}
 				>
-					{/* <CardMedia image={props.poke.image || props.poke.sprites.front_default} /> */}
 					<img
 						css={css`
+							width: 100px;
+							height: 100px;
 							flex: 0;
 							object-fit: contain;
 						`}
@@ -43,3 +44,5 @@ const PokemonCard = (props: any) => {
 };
 
 export default PokemonCard;
+
+export const config = { amp: true };

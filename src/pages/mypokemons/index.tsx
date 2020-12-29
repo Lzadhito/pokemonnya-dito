@@ -50,3 +50,5 @@ const MyPokemons = () => {
 };
 
 export default MyPokemons;
+
+// export const config = { amp: true };

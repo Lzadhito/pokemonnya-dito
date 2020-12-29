@@ -2,7 +2,6 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react';
 
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,25 +10,10 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ChevronLeft } from '@material-ui/icons';
-import { Typography } from '@material-ui/core';
+import { ButtonBase } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
 
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			flexGrow: 1,
-		},
-		menuButton: {
-			marginRight: theme.spacing(2),
-		},
-		title: {
-			flexGrow: 1,
-		},
-	})
-);
-
 const PokeAppBar = () => {
-	const classes = useStyles();
 	const router = useRouter();
 	const isMobile = useMediaQuery({ maxWidth: 600 });
 
@@ -37,7 +21,11 @@ const PokeAppBar = () => {
 	const isMainPage = pathname === '/pokemon';
 
 	return (
-		<div className={classes.root}>
+		<div
+			css={css`
+				flex-grow: 1;
+			`}
+		>
 			<AppBar position='static'>
 				<Toolbar>
 					<div
@@ -82,14 +70,21 @@ const PokeAppBar = () => {
 					<Link href={`/mypokemons`}>
 						<div>
 							{!isMobile && (
-								<h5
+								<ButtonBase
 									css={css`
-										display: inline;
-										cursor: pointer;
+										padding: 0 1vw;
+										border-radius: 5%;
 									`}
 								>
-									My Pokemons
-								</h5>
+									<h5
+										css={css`
+											display: inline;
+											cursor: pointer;
+										`}
+									>
+										My Pokemons
+									</h5>
+								</ButtonBase>
 							)}
 							<IconButton color='inherit'>
 								<SvgIcon>
@@ -105,3 +100,5 @@ const PokeAppBar = () => {
 };
 
 export default PokeAppBar;
+
+export const config = { amp: true };

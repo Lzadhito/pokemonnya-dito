@@ -27,7 +27,7 @@ const PokemonDetail = () => {
 	const { name: pokemonName } = router.query;
 	const [showCatchDialog, setShowCatchDialog] = useState(false);
 	const [catchFailed, setCatchFailed] = useState(false);
-	const { data: { pokemon = {} } = {}, loading } = useQuery(
+	const { data: { pokemon = {} } = {}, loading = true } = useQuery(
 		GET_SPESIFIC_POKEMON,
 		{
 			variables: { name: pokemonName },
@@ -80,6 +80,9 @@ const PokemonDetail = () => {
 			>
 				<img
 					css={css`
+						width: 100px;
+						height: 100px;
+						align-self: center;
 						flex: 0;
 						object-fit: contain;
 					`}
@@ -157,3 +160,5 @@ const PokemonDetail = () => {
 };
 
 export default PokemonDetail;
+
+// export const config = { amp: true };

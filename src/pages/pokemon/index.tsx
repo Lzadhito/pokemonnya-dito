@@ -22,7 +22,7 @@ const PokemonsList = () => {
 
 	const {
 		data: { pokemons: { results = [], next = '', previous = '' } = {} } = {},
-		loading,
+		loading = true,
 		refetch,
 	} = useQuery(GET_POKEMONS, {
 		variables: { limit, offset: pokemonOffset },
@@ -61,7 +61,13 @@ const PokemonsList = () => {
 			</div>
 			<Grid container spacing={3}>
 				{results.map((poke: any) => (
-					<Grid key={poke.name} item>
+					<Grid
+						css={css`
+							margin: auto;
+						`}
+						key={poke.name}
+						item
+					>
 						<PokemonCard poke={poke} />
 					</Grid>
 				))}
