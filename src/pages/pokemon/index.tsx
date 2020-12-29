@@ -16,7 +16,7 @@ import {
 } from '@material-ui/core';
 
 const PokemonsList = () => {
-	const limit = 7;
+	const limit = 23;
 	const [pokemonOffset, setPokemonOffset] = useState(1);
 	const { countPokemons } = useContext(PokemonContext);
 
@@ -59,7 +59,7 @@ const PokemonsList = () => {
 					you have {totalPokemons} pokemons
 				</Typography>
 			</div>
-			<Grid container justify='space-around' spacing={2}>
+			<Grid container spacing={3}>
 				{results.map((poke: any) => (
 					<Grid key={poke.name} item>
 						<PokemonCard poke={poke} />
@@ -81,7 +81,7 @@ const PokemonsList = () => {
 						<Button
 							variant='outlined'
 							onClick={() =>
-								previous && setPokemonOffset(pokemonOffset - limit)
+								previous && setPokemonOffset(pokemonOffset - limit - 1)
 							}
 						>
 							previous
@@ -98,7 +98,9 @@ const PokemonsList = () => {
 					{next && (
 						<Button
 							variant='outlined'
-							onClick={() => next && setPokemonOffset(pokemonOffset + limit)}
+							onClick={() =>
+								next && setPokemonOffset(pokemonOffset + limit + 1)
+							}
 						>
 							next
 						</Button>

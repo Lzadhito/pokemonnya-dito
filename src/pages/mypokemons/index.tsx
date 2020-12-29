@@ -41,7 +41,7 @@ const MyPokemons = () => {
 				`}
 				container
 				direction='column'
-				spacing={2}
+				spacing={3}
 			>
 				{generateListPokemons(myPokemons)}
 			</Grid>
