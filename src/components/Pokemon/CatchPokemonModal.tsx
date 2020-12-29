@@ -106,3 +106,5 @@ const CatchPokemonModal = (props) => {
 };
 
 export default CatchPokemonModal;
+
+export const config = { amp: true };

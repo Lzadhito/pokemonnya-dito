@@ -44,3 +44,5 @@ const PokemonCard = (props: any) => {
 };
 
 export default PokemonCard;
+
+export const config = { amp: true };

@@ -22,7 +22,7 @@ const PokemonsList = () => {
 
 	const {
 		data: { pokemons: { results = [], next = '', previous = '' } = {} } = {},
-		loading,
+		loading = true,
 		refetch,
 	} = useQuery(GET_POKEMONS, {
 		variables: { limit, offset: pokemonOffset },

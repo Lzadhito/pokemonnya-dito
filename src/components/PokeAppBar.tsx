@@ -100,3 +100,5 @@ const PokeAppBar = () => {
 };
 
 export default PokeAppBar;
+
+export const config = { amp: true };

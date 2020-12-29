@@ -1,0 +1,12 @@
+{
+	"short_name": "Pokemonnya-Dito",
+	"name": "Pokedito",
+	"lang": "en",
+	"start_url": "../pokemon",
+	"background_color": "#ffffff",
+	"theme_color": "#323232",
+	"dir": "ltr",
+	"display": "browser",
+	"orientation": "any",
+	"prefer_related_applications": "false"
+}

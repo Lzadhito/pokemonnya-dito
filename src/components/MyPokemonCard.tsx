@@ -118,3 +118,5 @@ const MyPokemonCard = (props) => {
 };
 
 export default MyPokemonCard;
+
+export const config = { amp: true };
