@@ -85,6 +85,8 @@ const PokemonsList = () => {
 				>
 					{previous && (
 						<Button
+							aria-label='previousPageButton'
+							accessKey='previousPageButton'
 							variant='outlined'
 							onClick={() =>
 								previous && setPokemonOffset(pokemonOffset - limit - 1)
@@ -103,6 +105,8 @@ const PokemonsList = () => {
 				>
 					{next && (
 						<Button
+							aria-label='nextPageButton'
+							accessKey='nextPageButton'
 							variant='outlined'
 							onClick={() =>
 								next && setPokemonOffset(pokemonOffset + limit + 1)

@@ -32,6 +32,8 @@ const MyPokemonCard = (props) => {
 	return (
 		<Card key={props.poke.id}>
 			<ButtonBase
+				aria-label={`MyPokemonCard/${props.poke.id}`}
+				accessKey={`MyPokemonCard/${props.poke.id}`}
 				css={css`
 					width: 100%;
 					display: flex;
@@ -48,10 +50,11 @@ const MyPokemonCard = (props) => {
 						`}
 					>
 						<img
+							alt={props.poke.name}
+							width='100px'
+							height='100px'
 							css={css`
 								flex: 0;
-								width: 100px;
-								height: 100px;
 								object-fit: contain;
 							`}
 							src={props.poke.image || props.poke.sprites.front_default}
@@ -73,7 +76,11 @@ const MyPokemonCard = (props) => {
 					</div>
 				</Link>
 				<div>
-					<IconButton onClick={() => setShowDelDialog(true)}>
+					<IconButton
+						aria-label='removePokemonClick'
+						accessKey='removePokemonClick'
+						onClick={() => setShowDelDialog(true)}
+					>
 						<Delete color='disabled' />
 					</IconButton>
 				</div>
@@ -91,10 +98,17 @@ const MyPokemonCard = (props) => {
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={closeDelDialog} color='inherit'>
+					<Button
+						aria-label='cancelRemove'
+						accessKey='cancelRemove'
+						onClick={closeDelDialog}
+						color='inherit'
+					>
 						Cancel
 					</Button>
 					<Button
+						aria-label='submitRemove'
+						accessKey='submitRemove'
 						onClick={removePokemon}
 						variant='contained'
 						color='secondary'

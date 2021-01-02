@@ -2,11 +2,35 @@
 	"short_name": "Pokemonnya-Dito",
 	"name": "Pokedito",
 	"lang": "en",
-	"start_url": "../pokemon",
-	"background_color": "#ffffff",
-	"theme_color": "#323232",
+	"start_url": "/pokemon",
 	"dir": "ltr",
-	"display": "browser",
+	"display": "standalone",
 	"orientation": "any",
-	"prefer_related_applications": "false"
+	"prefer_related_applications": "false",
+	"icons": [
+		{
+				"src": "/android-chrome-192x192.png",
+				"sizes": "192x192",
+				"type": "image/png"
+		},
+		{
+				"src": "/android-chrome-512x512.png",
+				"sizes": "512x512",
+				"type": "image/png"
+		},
+		{
+			"src": "/safari-pinned-tab.svg",
+			"sizes": "196x196",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+				"src": "/maskable_icon.png",
+				"sizes": "196x196",
+				"type": "image/png",
+				"purpose": "any maskable"
+			}
+],
+"theme_color": "#ffffff",
+"background_color": "#ffffff"
 }

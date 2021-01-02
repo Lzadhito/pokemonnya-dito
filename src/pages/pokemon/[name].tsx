@@ -74,15 +74,15 @@ const PokemonDetail = () => {
 				css={css`
 					display: flex;
 					flex-direction: column;
-					align-content: center;
+					align-items: center;
 					margin: 0 0 3vh 0;
 				`}
 			>
 				<img
+					alt={String(pokemonName)}
+					width='100px'
+					height='100px'
 					css={css`
-						width: 100px;
-						height: 100px;
-						align-self: center;
 						flex: 0;
 						object-fit: contain;
 					`}
@@ -129,6 +129,8 @@ const PokemonDetail = () => {
 				</Paper>
 			</div>
 			<Button
+				aria-label='catchPokemonButton'
+				accessKey='catchPokemonButton'
 				css={css`
 					background: #f44336;
 					color: white;
