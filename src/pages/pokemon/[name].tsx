@@ -74,7 +74,7 @@ const PokemonDetail = () => {
 				css={css`
 					display: flex;
 					flex-direction: column;
-					align-content: center;
+					align-items: center;
 					margin: 0 0 3vh 0;
 				`}
 			>
