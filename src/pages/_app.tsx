@@ -1,5 +1,6 @@
 import App from 'next/app';
 import type { AppProps, AppContext } from 'next/app';
+import Head from 'next/head';
 import {
 	ApolloClient,
 	ApolloProvider,
@@ -7,7 +8,6 @@ import {
 } from '@apollo/react-hooks';
 import '../styles/globals.css';
 import { PokemonProvider } from '../context/PokemonContext';
-import Head from 'next/head';
 import PokeAppBar from '../components/PokeAppBar';
 import {
 	createMuiTheme,
@@ -41,14 +41,53 @@ function MyApp({ Component, pageProps }: AppProps) {
 					<meta http-equiv='X-UA-Compatible' content='IE=edge' />
 					<meta
 						name='viewport'
-						content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'
+						content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5,user-scalable=yes'
 					/>
 					<meta name='description' content='Description' />
 					<meta name='keywords' content='Keywords' />
+					<meta name='mobile-web-app-capable' content='yes' />
+					<meta
+						name='apple-mobile-web-app-title'
+						content='Play Pokemonnya Dito!'
+					/>
+					<meta name='apple-mobile-web-app-capable' content='yes' />
+					<meta
+						name='apple-mobile-web-app-status-bar-style'
+						content='default'
+					/>
+					<meta name='msapplication-navbutton-color' content='white' />
+					<meta name='application-name' content='Pokemonnya Dito' />
+					<meta name='msapplication-tooltip' content='Tooltip Text' />
+					<meta name='msapplication-starturl' content='/' />
+					<meta name='msapplication-tap-highlight' content='no' />
+					<meta name='full-screen' content='yes' />
+					<meta name='browsermode' content='application' />
+					<meta name='nightmode' content='enable/disable' />
+					<meta name='imagemode' content='force' />
+					<meta name='screen-orientation' content='portrait' />
 					<title>Play Pokemonnya Dito!</title>
 					<link rel='manifest' href='/manifest.json' />
-					<meta name='theme-color' content='#323232' />
 					<meta name='background-color' content='#FFFFFF' />
+					<link
+						rel='apple-touch-icon'
+						sizes='180x180'
+						href='/apple-touch-icon.png'
+					/>
+					<link
+						rel='icon'
+						type='image/png'
+						sizes='32x32'
+						href='/favicon-32x32.png'
+					/>
+					<link
+						rel='icon'
+						type='image/png'
+						sizes='16x16'
+						href='/favicon-16x16.png'
+					/>
+					<link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
+					<meta name='msapplication-TileColor' content='#da532c' />
+					<meta name='theme-color' content='#ffffff' />
 
 					<link
 						rel='stylesheet'
