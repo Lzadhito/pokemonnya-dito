@@ -16,8 +16,8 @@ import {
 } from '@material-ui/core';
 
 const PokemonsList = () => {
-	const limit = 23;
-	const [pokemonOffset, setPokemonOffset] = useState(1);
+	const limit = 24;
+	const [pokemonOffset, setPokemonOffset] = useState(0);
 	const { countPokemons } = useContext(PokemonContext);
 
 	const {
@@ -83,13 +83,14 @@ const PokemonsList = () => {
 						flex: 1;
 					`}
 				>
+					{console.log(`previous: ${previous}`)}
 					{previous && (
 						<Button
 							aria-label='previousPageButton'
 							accessKey='previousPageButton'
 							variant='outlined'
 							onClick={() =>
-								previous && setPokemonOffset(pokemonOffset - limit - 1)
+								previous && setPokemonOffset(pokemonOffset - limit)
 							}
 						>
 							previous
@@ -108,9 +109,7 @@ const PokemonsList = () => {
 							aria-label='nextPageButton'
 							accessKey='nextPageButton'
 							variant='outlined'
-							onClick={() =>
-								next && setPokemonOffset(pokemonOffset + limit + 1)
-							}
+							onClick={() => next && setPokemonOffset(pokemonOffset + limit)}
 						>
 							next
 						</Button>
