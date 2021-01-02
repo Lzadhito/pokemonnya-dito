@@ -79,10 +79,10 @@ const PokemonDetail = () => {
 				`}
 			>
 				<img
+					alt={String(pokemonName)}
+					width='100px'
+					height='100px'
 					css={css`
-						width: 100px;
-						height: 100px;
-						align-self: center;
 						flex: 0;
 						object-fit: contain;
 					`}
@@ -129,6 +129,8 @@ const PokemonDetail = () => {
 				</Paper>
 			</div>
 			<Button
+				aria-label='catchPokemonButton'
+				accessKey='catchPokemonButton'
 				css={css`
 					background: #f44336;
 					color: white;

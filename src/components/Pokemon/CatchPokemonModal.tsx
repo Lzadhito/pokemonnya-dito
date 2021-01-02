@@ -80,10 +80,22 @@ const CatchPokemonModal = (props) => {
 						/>
 					</DialogContent>
 					<DialogActions>
-						<Button variant='contained' onClick={handleClose} color='secondary'>
+						<Button
+							aria-label='cancelNickname'
+							accessKey='cancelNickname'
+							variant='contained'
+							onClick={handleClose}
+							color='secondary'
+						>
 							Cancel
 						</Button>
-						<Button variant='contained' type='submit' color='primary'>
+						<Button
+							aria-label='submitNickname'
+							accessKey='submitNickname'
+							variant='contained'
+							type='submit'
+							color='primary'
+						>
 							Submit
 						</Button>
 					</DialogActions>

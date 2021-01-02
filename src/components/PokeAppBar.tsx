@@ -36,7 +36,7 @@ const PokeAppBar = () => {
 					>
 						{!isMainPage && (
 							<Link href='/pokemon'>
-								<IconButton>
+								<IconButton aria-label='back' accessKey='back'>
 									<ChevronLeft
 										css={css`
 											color: white;
@@ -47,6 +47,8 @@ const PokeAppBar = () => {
 						)}
 						<Link href='/pokemon'>
 							<button
+								aria-label='Homepage'
+								accessKey='Homepage'
 								css={css`
 									letter-spacing: 0.1em;
 									background: transparent;
@@ -71,6 +73,8 @@ const PokeAppBar = () => {
 						<div>
 							{!isMobile && (
 								<ButtonBase
+									aria-label='myPokemonDesc'
+									accessKey='myPokemonDesc'
 									css={css`
 										padding: 0 1vw;
 										border-radius: 5%;
@@ -86,7 +90,11 @@ const PokeAppBar = () => {
 									</h5>
 								</ButtonBase>
 							)}
-							<IconButton color='inherit'>
+							<IconButton
+								aria-label='myPokemonNav'
+								accessKey='myPokemonNav'
+								color='inherit'
+							>
 								<SvgIcon>
 									<PokeBallIcon />
 								</SvgIcon>

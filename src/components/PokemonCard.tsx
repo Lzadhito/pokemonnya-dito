@@ -7,7 +7,10 @@ import Link from 'next/link';
 const PokemonCard = (props: any) => {
 	return (
 		<Link href={`/pokemon/${props.poke.name}`}>
-			<ButtonBase>
+			<ButtonBase
+				aria-label={`pokemonCard/${props.poke.name}`}
+				accessKey={`pokemonCard/${props.poke.name}`}
+			>
 				<Card
 					css={css`
 						// margin: 1vh 0;
@@ -22,9 +25,10 @@ const PokemonCard = (props: any) => {
 					key={props.poke.id}
 				>
 					<img
+						alt={props.poke.name}
+						width='100px'
+						height='100px'
 						css={css`
-							width: 100px;
-							height: 100px;
 							flex: 0;
 							object-fit: contain;
 						`}
