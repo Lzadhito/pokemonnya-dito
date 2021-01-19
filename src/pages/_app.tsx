@@ -5,7 +5,7 @@ import {
 	ApolloClient,
 	ApolloProvider,
 	InMemoryCache,
-} from '@apollo/react-hooks';
+} from '@apollo/client';
 import '../styles/globals.css';
 import { PokemonProvider } from '../context/PokemonContext';
 import PokeAppBar from '../components/PokeAppBar';
